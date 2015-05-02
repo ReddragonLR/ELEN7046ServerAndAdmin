@@ -4,9 +4,14 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var CompletedSurveySchema = new Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  CompletedQuestionAnswers: [{
+  								Question: String,
+  								Answer: String,
+  								AnswerType: String
+  							}],
+  DateCompleted: Date,
+  SurveyTaker: String,
+  SurveySupervisor: String
 });
 
 module.exports = mongoose.model('CompletedSurvey', CompletedSurveySchema);

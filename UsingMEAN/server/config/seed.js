@@ -4,7 +4,7 @@
  */
 
 'use strict';
-
+/* Thing specific */
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 
@@ -44,6 +44,104 @@ User.find({}).remove(function() {
     password: 'admin'
   }, function() {
       console.log('finished populating users');
+    }
+  );
+});
+
+/* Survey specific */
+var Survey = require('../api/survey/survey.model');
+Survey.find({}).remove(function(){
+  Survey.create({
+    QuestionAnswers: [{
+      Question: 'This is a test first question',
+      AnswerType: ['Text']
+    },
+    {
+      Question: 'This is a test second question',
+      AnswerType: ['Radio'],
+      AnswerOptions: ['Yes', 'No']
+    }],
+    CreatedDate: new Date('01.02.2015'),
+    CreatedBy: 'Seeded Survey Guy'
+  },
+  QuestionAnswers: [{
+      Question: 'What is the name of your first pet?',
+        AnswerType: ['Text']
+      },
+      {
+        Question: 'Did you like the service you were given?',
+        AnswerType: ['Radio'],
+        AnswerOptions: ['Yes', 'No']
+    }],
+    CreatedDate: new Date('01.03.2015'),
+    CreatedBy: 'Seeded Survey Guy'
+  }, function(){
+      console.log('completed seeding the surveys');
+    }
+  );
+});
+
+/* CompletedSurvey specific */
+var CompletedSurvey = require('../api/completedSurvey/completedSurvey.model'); 
+CompletedSurvey.find({}).remove(function(){
+  CompletedSurvey.create({
+    CompletedQuestionAnswers: [{
+        Question: 'This is a test first question',
+        Answer: 'Sample first answer',
+        AnswerType: 'Text'
+    },
+    {
+        Question: 'This is a test second question',
+        Answer: 'No,',
+        AnswerType: 'Radio'
+    }],
+    DateCompleted: new Date('01.02.2015'),
+    SurveyTaker: 'Survey Taker Guy',
+    SurveySupervisor: 'Survey Supervisor Guy'
+  },
+  CompletedQuestionAnswers: [{
+        Question: 'This is a test first question',
+          Answer: 'First question answer',
+          AnswerType: 'Text'
+      },
+      {
+          Question: 'This is a test second question',
+          Answer: 'Yes,',
+          AnswerType: 'Radio'
+    }],
+    DateCompleted: new Date('01.02.2015'),
+    SurveyTaker: 'Survey Taker Guy',
+    SurveySupervisor: 'Survey Supervisor Guy'
+  },
+  CompletedQuestionAnswers: [{
+        Question: 'What is the name of your first pet?',
+          Answer: 'Joey',
+          AnswerType: 'Text'
+      },
+      {
+          Question: 'Did you like the service you were given?',
+          Answer: 'No,',
+          AnswerType: 'Radio'
+    }],
+    DateCompleted: new Date('01.03.2015'),
+    SurveyTaker: 'Survey Taker Guy',
+    SurveySupervisor: 'Survey Supervisor Girl'
+  },
+  CompletedQuestionAnswers: [{
+          Question: 'What is the name of your first pet?',
+          Answer: 'Joey again',
+          AnswerType: 'Text'
+      },
+      {
+          Question: 'Did you like the service you were given?',
+          Answer: 'Yes,',
+          AnswerType: 'Radio'
+    }],
+    DateCompleted: new Date('01.03.2015'),
+    SurveyTaker: 'Survey Taker Guy',
+    SurveySupervisor: 'Survey Supervisor Girl'
+  }, function(){
+      console.log('completed seeding the completedSurveys');
     }
   );
 });
