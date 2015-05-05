@@ -7,7 +7,8 @@ var SurveySchema = new Schema({
   QuestionAnswers: [{
   						Question: String,
   						AnswerType: {type: Array, "default": ["Radio", "Multi", "Text"]},
-  						AnswerOptions: {type: Array, "default": []}
+  						AnswerOptions: {type: Array, "default": []},
+              Answer: {type: String, "default": ""}
   					}],
   State: {type: Array, "default": ["Draft", "Active", "Inactive"]},
   CreatedDate: Date,

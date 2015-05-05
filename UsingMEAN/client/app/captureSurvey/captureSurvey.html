@@ -1,3 +1,32 @@
-<div class="col-md-12">
-This is the captureSurvey view.
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    Choose a survey from the list below:
+    <label class="checkbox">
+        <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
+    </label>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys">
+            <form novalidate class="css-form">
+                <div class="well" ng-repeat="question in survey.QuestionAnswers">
+                    <p>{{question.Question}}</p>
+                    <span ng-if="question.AnswerType[0] == 'Text'">
+                    <input type="Text" ng-model="question.Answer"/>
+                </span>
+                    <div ng-if="question.AnswerType[0] == 'Radio'" class="btn-group">
+                        <span ng-repeat="answerOption in question.AnswerOptions">
+                        <input type="radio" name="radioAnswerGroup" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
+                    </span>
+                    </div>
+                    <!-- Multi select needs work -->
+                    <!--<span ng-if="question.AnswerType[0] == 'Multi'">
+                    <span ng-repeat="answerOption in question.AnswerOptions">
+                        <input type="checkbox" name="checkboxAnswerList" ng-model="question.Answer" value="answerOption">{{answerOption}}</label>
+                    </span>
+                </span>-->
+                </div>
+                <input type="submit" ng-click="submitSurvey(survey)" value="Submit" />
+            </form>
+        </accordion-group>
+    </accordion>
 </div>
