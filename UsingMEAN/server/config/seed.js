@@ -62,7 +62,8 @@ Survey.find({}).remove(function(){
     }],
     CreatedDate: new Date('01.02.2015'),
     CreatedBy: 'Seeded Survey Guy',
-    State: ['Active']
+    State: ['Active'],
+    Name: 'Survey 1'
   },{
   QuestionAnswers: [{
       Question: 'What is the name of your first pet?',
@@ -75,7 +76,8 @@ Survey.find({}).remove(function(){
     }],
     CreatedDate: new Date('01.02.2015'),
     CreatedBy: 'Seeded Survey Guy',
-    State: ['Active']
+    State: ['Active'],
+    Name: 'Survey 2'
   }, function(){
     console.log('Seeded sample surveys');
   })
@@ -97,7 +99,8 @@ CompletedSurvey.find({}).remove(function(){
     }],
     DateCompleted: new Date('01.02.2015'),
     SurveyTaker: 'Survey Taker Guy',
-    SurveySupervisor: 'Survey Supervisor Guy'
+    SurveySupervisor: 'Survey Supervisor Guy',
+    SurveyName: 'Survey 1'
   },{
   CompletedQuestionAnswers: [{
         Question: 'This is a test first question',
@@ -111,7 +114,8 @@ CompletedSurvey.find({}).remove(function(){
     }],
     DateCompleted: new Date('01.02.2015'),
     SurveyTaker: 'Survey Taker Guy',
-    SurveySupervisor: 'Survey Supervisor Guy'
+    SurveySupervisor: 'Survey Supervisor Guy',
+    SurveyName: 'Survey 1'
   },{
   CompletedQuestionAnswers: [{
         Question: 'What is the name of your first pet?',
@@ -125,7 +129,8 @@ CompletedSurvey.find({}).remove(function(){
     }],
     DateCompleted: new Date('01.03.2015'),
     SurveyTaker: 'Survey Taker Guy',
-    SurveySupervisor: 'Survey Supervisor Girl'
+    SurveySupervisor: 'Survey Supervisor Girl',
+    SurveyName: 'Survey 2'
   },{
   CompletedQuestionAnswers: [{
           Question: 'What is the name of your first pet?',
@@ -139,7 +144,8 @@ CompletedSurvey.find({}).remove(function(){
     }],
     DateCompleted: new Date('01.03.2015'),
     SurveyTaker: 'Survey Taker Guy',
-    SurveySupervisor: 'Survey Supervisor Girl'
+    SurveySupervisor: 'Survey Supervisor Girl',
+    SurveyName: 'Survey 2'
   }, function(){
       console.log('Seeding sample completedSurveys');
     }

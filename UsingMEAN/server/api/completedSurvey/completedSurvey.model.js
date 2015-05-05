@@ -11,7 +11,8 @@ var CompletedSurveySchema = new Schema({
   							}],
   DateCompleted: Date,
   SurveyTaker: String,
-  SurveySupervisor: String
+  SurveySupervisor: String,
+  SurveyName: String
 });
 
 module.exports = mongoose.model('CompletedSurvey', CompletedSurveySchema);

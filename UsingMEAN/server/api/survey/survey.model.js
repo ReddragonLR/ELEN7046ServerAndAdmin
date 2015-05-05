@@ -11,7 +11,8 @@ var SurveySchema = new Schema({
   					}],
   State: {type: Array, "default": ["Draft", "Active", "Inactive"]},
   CreatedDate: Date,
-  CreatedBy: String
+  CreatedBy: String,
+  Name: String
 });
 
 module.exports = mongoose.model('Survey', SurveySchema);
