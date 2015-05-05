@@ -43,7 +43,7 @@ User.find({}).remove(function() {
     email: 'admin@admin.com',
     password: 'admin'
   }, function() {
-      console.log('finished populating users');
+      console.log('Seeded sample users');
     }
   );
 });
@@ -52,47 +52,37 @@ var Survey = require('../api/survey/survey.model');
 Survey.find({}).remove(function(){
   Survey.create({
     QuestionAnswers: [{
-      Question: "This is a test first question",
-      AnswerType: ['Text']
-    }],
-    CreatedDate: new Date('01.02.2015'),
-    CreatedBy: 'Seeded Survey Guy'  })
-});
-
-/* Survey specific */
-/*var Survey = require('../api/survey/survey.model');
-Survey.find({}).remove(function(){
-  Survey.create({
-    QuestionAnswers: [{
       Question: 'This is a test first question',
       AnswerType: ['Text']
     },
-      {Question: 'This is a test second question',
+    {
+      Question: 'This is a test second question',
       AnswerType: ['Radio'],
       AnswerOptions: ['Yes', 'No']
     }],
     CreatedDate: new Date('01.02.2015'),
-    CreatedBy: 'Seeded Survey Guy'
-  },
-  QuestionAnswers: [
+    CreatedBy: 'Seeded Survey Guy',
+    State: ['Active']
+  },{
+  QuestionAnswers: [{
       Question: 'What is the name of your first pet?',
-        AnswerType: ['Text']
-      ,
-      
-        Question: 'Did you like the service you were given?',
-        AnswerType: ['Radio'],
-        AnswerOptions: ['Yes', 'No']
-    ],
-    CreatedDate: new Date('01.03.2015'),
-    CreatedBy: 'Seeded Survey Guy'
+      AnswerType: ['Text']
+    },
+    {
+      Question: 'Did you like the service you were given?',
+      AnswerType: ['Radio'],
+      AnswerOptions: ['Yes', 'No']
+    }],
+    CreatedDate: new Date('01.02.2015'),
+    CreatedBy: 'Seeded Survey Guy',
+    State: ['Active']
   }, function(){
-      console.log('completed seeding the surveys');
-    }
-  );
-});*/
+    console.log('Seeded sample surveys');
+  })
+});
 
 /* CompletedSurvey specific */
-/*var CompletedSurvey = require('../api/completedSurvey/completedSurvey.model'); 
+var CompletedSurvey = require('../api/completedSurvey/completedSurvey.model'); 
 CompletedSurvey.find({}).remove(function(){
   CompletedSurvey.create({
     CompletedQuestionAnswers: [{
@@ -108,7 +98,7 @@ CompletedSurvey.find({}).remove(function(){
     DateCompleted: new Date('01.02.2015'),
     SurveyTaker: 'Survey Taker Guy',
     SurveySupervisor: 'Survey Supervisor Guy'
-  },
+  },{
   CompletedQuestionAnswers: [{
         Question: 'This is a test first question',
           Answer: 'First question answer',
@@ -122,7 +112,7 @@ CompletedSurvey.find({}).remove(function(){
     DateCompleted: new Date('01.02.2015'),
     SurveyTaker: 'Survey Taker Guy',
     SurveySupervisor: 'Survey Supervisor Guy'
-  },
+  },{
   CompletedQuestionAnswers: [{
         Question: 'What is the name of your first pet?',
           Answer: 'Joey',
@@ -136,7 +126,7 @@ CompletedSurvey.find({}).remove(function(){
     DateCompleted: new Date('01.03.2015'),
     SurveyTaker: 'Survey Taker Guy',
     SurveySupervisor: 'Survey Supervisor Girl'
-  },
+  },{
   CompletedQuestionAnswers: [{
           Question: 'What is the name of your first pet?',
           Answer: 'Joey again',
@@ -151,7 +141,7 @@ CompletedSurvey.find({}).remove(function(){
     SurveyTaker: 'Survey Taker Guy',
     SurveySupervisor: 'Survey Supervisor Girl'
   }, function(){
-      console.log('completed seeding the completedSurveys');
+      console.log('Seeding sample completedSurveys');
     }
   );
-});*/
+});
