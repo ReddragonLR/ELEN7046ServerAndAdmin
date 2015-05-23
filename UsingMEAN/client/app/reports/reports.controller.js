@@ -2,5 +2,12 @@
 
 angular.module('elen7046ServerAndAdminApp')
   .controller('ReportsCtrl', function ($scope) {
-    $scope.message = 'Hello';
+    
+    // Variable to hold the data for the report
+    
+    
+    
+    
+    
+    
   });
