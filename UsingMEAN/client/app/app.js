@@ -6,7 +6,8 @@ angular.module('elen7046ServerAndAdminApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'highcharts-ng'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
