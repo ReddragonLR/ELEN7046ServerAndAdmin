@@ -221,7 +221,7 @@ CompletedSurvey.find({}).remove(function(){
       },
       {
           Question: 'Did you like the service you were given?',
-          Answer: 'No,',
+          Answer: 'No',
           AnswerType: 'Radio'
     }],
     DateCompleted: new Date('01.03.2015'),
@@ -236,7 +236,7 @@ CompletedSurvey.find({}).remove(function(){
       },
       {
           Question: 'Did you like the service you were given?',
-          Answer: 'Yes,',
+          Answer: 'Yes',
           AnswerType: 'Radio'
     }],
     DateCompleted: new Date('01.03.2015'),

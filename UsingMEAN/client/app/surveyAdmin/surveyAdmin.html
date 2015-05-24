@@ -1,11 +1,37 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="survey in allSurveys">
-        <strong>{{survey.Name}}</strong><br>
-        <span class="text-muted">{{survey.CreatedDate}}</span>
-        <span class="text-muted">{{survey.CreatedBy}}</span>
-    </li>
-  </ul>
+    Choose a survey from the list below:
+    <accordion close-others="oneAtATime">
+        <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys" style="cursor: pointer;">
+            <form novalidate class="css-form">
+                <div class="well" ng-repeat="question in survey.QuestionAnswers">
+                    <input type="text" ng-model="question.Question" />
+                    <div class="btn-group">
+                        <p>Choose Response Type</p>
+                        <span>
+                            <input type="radio" name="radioAnswerGroup" value="Radio"/>Radio<br/>
+                            <input type="radio" name="radioAnswerGroup" value="Text"/>Text<br/>
+                        </span>
+                    </div>
+                    <!--<p>{{question.Question}}</p>
+                    <span ng-if="question.AnswerType[0] == 'Text'">
+                    <input type="Text" ng-model="question.Answer"/>
+                </span>-->
+                    <!--<div ng-if="question.AnswerType[0] == 'Radio'" class="btn-group">
+                        <span ng-repeat="answerOption in question.AnswerOptions">
+                            <input type="radio" name="radioAnswerGroup" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
+                        </span>
+                    </div>-->
+                    <!-- Multi select needs work -->
+                    <!--<span ng-if="question.AnswerType[0] == 'Multi'">
+                    <span ng-repeat="answerOption in question.AnswerOptions">
+                        <input type="checkbox" name="checkboxAnswerList" ng-model="question.Answer" value="answerOption">{{answerOption}}</label>
+                    </span>
+                </span>-->
+                </div>
+                <input type="submit" ng-click="updateSurveyQuestions(survey)" value="Submit" />
+            </form>
+        </accordion-group>
+    </accordion>
 </div>
