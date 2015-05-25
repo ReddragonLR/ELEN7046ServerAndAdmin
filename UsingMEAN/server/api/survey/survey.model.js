@@ -6,10 +6,7 @@ var mongoose = require('mongoose'),
 var SurveySchema = new Schema({
     QuestionAnswers: [{
         Question: String,
-        AnswerType: {
-            type: Array,
-            "default": ["Radio", "Multi", "Text"]
-        },
+        AnswerType: String,
         AnswerOptions: {
             type: Array,
             "default": []
@@ -19,10 +16,7 @@ var SurveySchema = new Schema({
             "default": ""
         }
        }],
-    State: {
-        type: Array,
-        "default": ["Draft", "Active", "Inactive"]
-    },
+    State: String,
     CreatedDate: Date,
     CreatedBy: String,
     Name: String
