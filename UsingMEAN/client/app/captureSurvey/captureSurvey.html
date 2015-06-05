@@ -7,10 +7,10 @@
             <form novalidate class="css-form">
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <p>{{question.Question}}</p>
-                    <span ng-if="question.AnswerType[0] == 'Text'">
+                    <span ng-if="question.AnswerType == 'Text'">
                     <input type="Text" ng-model="question.Answer"/>
                 </span>
-                    <div ng-if="question.AnswerType[0] == 'Radio'" class="btn-group">
+                    <div ng-if="question.AnswerType == 'Radio'" class="btn-group">
                         <span ng-repeat="answerOption in question.AnswerOptions">
                         <input type="radio" name="radioAnswerGroup" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
                     </span>

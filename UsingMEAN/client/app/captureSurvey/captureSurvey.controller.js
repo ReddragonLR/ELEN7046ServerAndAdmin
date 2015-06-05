@@ -33,7 +33,7 @@ angular.module('elen7046ServerAndAdminApp')
                 var completedQuestionAnswerObj = new Object();
                 completedQuestionAnswerObj.Question = survey.QuestionAnswers[i].Question;
                 completedQuestionAnswerObj.Answer = survey.QuestionAnswers[i].Answer;
-                completedQuestionAnswerObj.AnswerType = survey.QuestionAnswers[i].AnswerType[0];
+                completedQuestionAnswerObj.AnswerType = survey.QuestionAnswers[i].AnswerType;
                 completedQuestionAnswers.push(completedQuestionAnswerObj);
             };
             return completedQuestionAnswers;

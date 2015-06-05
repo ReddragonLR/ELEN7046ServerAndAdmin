@@ -1,8 +1,15 @@
 'use strict';
 
 angular.module('elen7046ServerAndAdminApp')
-    .controller('ReportsCtrl', function ($scope) {
+    .controller('ReportsCtrl', function ($scope, $http, socket) {
 
+
+        //populate surveys into list so that we can select the one we wish to report on
+        $http.get('/api/surveys/').success(function (allSurveyData) {
+            $scope.allSurveyData = allSurveyData;
+        });
+    
+    
         // Variable to hold the data for the report
         $scope.dichotomousQuestions = [];
         $scope.allCompletedReports = [];
@@ -55,6 +62,7 @@ angular.module('elen7046ServerAndAdminApp')
         $scope.reflow = function () {
             $scope.$broadcast('highchartsng.reflow');
         };
+
         /*$scope.chartTypes = [
     {"id": "line", "title": "Line"},
     {"id": "spline", "title": "Smooth line"},

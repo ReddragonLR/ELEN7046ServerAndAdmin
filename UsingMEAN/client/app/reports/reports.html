@@ -1,9 +1,19 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<p>
-    This is where the reports go
-</p>
 
-<div class="row">
+<div class="container">
+    <h2>Choose a survey from the list below:</h2>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveyData" style="cursor: pointer;">
+            <form novalidate class="css-form">
+                <div class="well" ng-repeat="question in survey.QuestionAnswers">
+                    <p>{{question.Question}}</p><input type="button" value="Report On This"/>
+                </div>
+            </form>
+        </accordion-group>
+    </accordion>
+</div>
+
+<!--<div class="row">
             <div class="span9">
                 <div class="row">
                     <highchart id="chart1" config="chartConfig" class="span9" ></highchart>
@@ -20,7 +30,7 @@
                     </pre>
                 </div>
             </div>-->
-            <!--<div class="span4">
+<!--<div class="span4">
                 <div class="row-fluid">Title <input ng-model="chartConfig.title.text"></div>
                 <div class="row-fluid">Subtitle <input ng-model="chartConfig.subtitle.text"></div>
                 <div class="row-fluid">Width <input ng-model="chartConfig.size.width"></div>
@@ -49,6 +59,5 @@
                 <div class="row-fluid"><button ng-click="replaceAllSeries()">Replace all series</button></div>
                 <div class="row-fluid">Min: <input type="number" ng-model="chartConfig.xAxis.currentMin"></div>
                 <div class="row-fluid">Max: <input type="number" ng-model="chartConfig.xAxis.currentMax"></div>
-            </div>-->
-        </div>
-
+            </div>
+        </div>-->
