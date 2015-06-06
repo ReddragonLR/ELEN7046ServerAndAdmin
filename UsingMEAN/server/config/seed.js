@@ -171,7 +171,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date(),
         SurveyTaker: 'Joe Soap',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -231,7 +231,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-03-01'),
         SurveyTaker: 'Nakesha Sulzer',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -291,7 +291,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-03-01'),
         SurveyTaker: 'Han Ali',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -351,7 +351,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-02-03'),
         SurveyTaker: 'Wendolyn Delagarza',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -411,7 +411,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-03-03'),
         SurveyTaker: 'Maegan Neville',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -471,7 +471,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-03-03'),
         SurveyTaker: 'Willie Ruby',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -531,7 +531,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-04-03'),
         SurveyTaker: 'Brigida Sawyers',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -591,7 +591,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-05-03'),
         SurveyTaker: 'Keena Degraff',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -651,7 +651,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2015'),
+        DateCompleted: new Date('2015-06-03'),
         SurveyTaker: 'Marianna Catlin',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
@@ -711,7 +711,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('01.03.2014'),
+        DateCompleted: new Date('2014-01-03'),
         SurveyTaker: 'Eliseo Selph',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'
