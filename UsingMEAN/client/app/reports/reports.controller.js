@@ -110,7 +110,10 @@ angular.module('elen7046ServerAndAdminApp')
                     enabled: true
                 },
                 loading: false,
-                size: {}
+                size: {
+                    height: 600,
+                    width: 1000
+                }
             }
 
             $scope.reflow = function () {
