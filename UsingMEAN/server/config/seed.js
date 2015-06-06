@@ -411,7 +411,7 @@ CompletedSurvey.find({}).remove(function () {
                 AnswerType: 'Text',
                 Answer: 'None as yet'
     }],
-        DateCompleted: new Date('2015-03-03'),
+        DateCompleted: new Date('2015-01-03'),
         SurveyTaker: 'Maegan Neville',
         SurveySupervisor: 'Survey Supervisor Girl',
         SurveyName: 'Medical Health Survey'

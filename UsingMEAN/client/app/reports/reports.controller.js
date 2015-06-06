@@ -13,7 +13,7 @@ angular.module('elen7046ServerAndAdminApp')
             // Get data and plot on graph
             $scope.overallSummarySeries = [
                 {
-                    "name": "Surveys Captured Per Month",
+                    "name": "Surveys Captured",
                     "data": _mapCompletedSurveyData(),
                     type: "column"
             }];
@@ -21,7 +21,6 @@ angular.module('elen7046ServerAndAdminApp')
             // Populate data into respective variables based on the answer type
             function _mapCompletedSurveyData() {
                 var dataPoints = [];
-                // Variable to hold the overall summary report data
                 var JanuaryCount = 0;
                 var FebruaryCount = 0;
                 var MarchCount = 0;
@@ -93,16 +92,16 @@ angular.module('elen7046ServerAndAdminApp')
 
             $scope.overallSummaryConfig = {
                 options: {
-                    chart: {
-                        type: 'areaspline'
-                    },
-                    plotOptions: {
-                        series: {
-                            stacking: ''
-                        }
+
+                },
+                chart: {
+                    type: 'column'
+                },
+                plotOptions: {
+                    series: {
+                        stacking: ''
                     }
                 },
-                series: $scope.overallSummarySeries,
                 title: {
                     text: 'Overall Survey Sumary For ' + new Date().getFullYear().toString()
                 },
@@ -113,8 +112,32 @@ angular.module('elen7046ServerAndAdminApp')
                 size: {
                     height: 600,
                     width: 1000
+                },
+                series: $scope.overallSummarySeries,
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Number of Completed Surveys'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec']
                 }
-            }
+            };
+            
+            // Config and series for the YESNO Questions
 
             $scope.reflow = function () {
                 $scope.$broadcast('highchartsng.reflow');
