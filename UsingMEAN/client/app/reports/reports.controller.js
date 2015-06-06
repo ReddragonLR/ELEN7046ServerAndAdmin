@@ -3,15 +3,17 @@
 angular.module('elen7046ServerAndAdminApp')
     .controller('ReportsCtrl', function ($scope, $http, socket) {
 
-
+        // Variable to hold all current year survey data
+        $scope.allCurrentYearSurveyData = [];
+    
         // Populate surveys into list so that we can select the one we wish to report on
+        // for the current year
         $http.get('/api/completedSurveys/?option=currentYearReport').success(function (allSurveyData) {
-            $scope.allSurveyData = allSurveyData;
+            $scope.allCurrentYearSurveyData = allSurveyData;
         });
 
         // Variable to hold the overall summary report data
         $scope.overallSummaryReportData = [];
-        var currentYear = new Date().getFullYear();
         var JanuaryCount = 0;
         var FebruaryCount = 0;
         var MarchCount = 0;
@@ -34,12 +36,12 @@ angular.module('elen7046ServerAndAdminApp')
 
 
         // Populate data into respective variables based on the answer type
-        for (var i = 0; i < $scope.allSurveyData.length; i++) {
-            if ($scope.allSurveyData[i].AnswerType == 'YesNo') {
-                $scope.dichotomousQuestionData.push($scope.allSurveyData[i]);
+        for (var i = 0; i < $scope.allCurrentYearSurveyData.length; i++) {
+            if ($scope.allCurrentYearSurveyData[i].AnswerType == 'YesNo') {
+                $scope.dichotomousQuestionData.push($scope.allCurrentYearSurveyData[i]);
             }
-            if ($scope.allSurveyData[i].AnswerType == 'DropDown') {
-                $scope.rangeBasedQuestionData.push($scope.allSurveyData[i]);
+            if ($scope.allCurrentYearSurveyData[i].AnswerType == 'DropDown') {
+                $scope.rangeBasedQuestionData.push($scope.allCurrentYearSurveyData[i]);
             }
 
 

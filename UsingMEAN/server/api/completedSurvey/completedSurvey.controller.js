@@ -4,6 +4,8 @@ var _ = require('lodash');
 var CompletedSurvey = require('./completedSurvey.model');
 
 // Get list of completedSurveys
+// If a URL parameter exists where the option is to pull the current year report then the only current year
+// completed surveys are returned
 exports.index = function (req, res) {
     if (req.query.option == 'currentYearReport') {
         CompletedSurvey.find(function (err, completedSurveys) {
