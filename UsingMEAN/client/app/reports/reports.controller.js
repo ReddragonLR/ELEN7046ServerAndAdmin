@@ -4,18 +4,49 @@ angular.module('elen7046ServerAndAdminApp')
     .controller('ReportsCtrl', function ($scope, $http, socket) {
 
 
-        //populate surveys into list so that we can select the one we wish to report on
-        $http.get('/api/surveys/').success(function (allSurveyData) {
+        // Populate surveys into list so that we can select the one we wish to report on
+        $http.get('/api/completedSurveys/?option=currentYearReport').success(function (allSurveyData) {
             $scope.allSurveyData = allSurveyData;
         });
-    
-    
-        // Variable to hold the data for the report
-        $scope.dichotomousQuestions = [];
-        $scope.allCompletedReports = [];
+
+        // Variable to hold the overall summary report data
+        $scope.overallSummaryReportData = [];
+        var currentYear = new Date().getFullYear();
+        var JanuaryCount = 0;
+        var FebruaryCount = 0;
+        var MarchCount = 0;
+        var AprilCount = 0;
+        var MayCount = 0;
+        var JuneCount = 0;
+        var JulyCount = 0;
+        var AugustCount = 0;
+        var SeptemberCount = 0;
+        var OctoberCount = 0;
+        var NovemberCount = 0;
+        var DecemberCount = 0;
+
+        // Variable to hold the data for the YESNO report
+        $scope.dichotomousQuestionData = [];
+
+        // Variable to store data for the range based questions
+        $scope.rangeBasedQuestionData = [];
+
+
+
+        // Populate data into respective variables based on the answer type
+        for (var i = 0; i < $scope.allSurveyData.length; i++) {
+            if ($scope.allSurveyData[i].AnswerType == 'YesNo') {
+                $scope.dichotomousQuestionData.push($scope.allSurveyData[i]);
+            }
+            if ($scope.allSurveyData[i].AnswerType == 'DropDown') {
+                $scope.rangeBasedQuestionData.push($scope.allSurveyData[i]);
+            }
+
+
+        };
 
         // Get data and plot on graph
-        $scope.chartSeries = [
+        /*$scope.chartSeries = [
             {
                 "name": "Some data",
                 "data": [1, 2, 4, 7, 3]
@@ -57,7 +88,7 @@ angular.module('elen7046ServerAndAdminApp')
             },
             loading: false,
             size: {}
-        }
+        }*/
 
         $scope.reflow = function () {
             $scope.$broadcast('highchartsng.reflow');
