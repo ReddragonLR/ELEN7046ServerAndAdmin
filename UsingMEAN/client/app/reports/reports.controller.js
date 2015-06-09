@@ -135,6 +135,57 @@ angular.module('elen7046ServerAndAdminApp')
                         }
                     };
                 };
+
+                /*var groupedYesNoData = [];
+                for (var i = 0; i < yesNoDataTemp.length; i++) {
+                    if (i == 0) {
+                        var startingDataPoint = new Object();
+                        startingDataPoint.Question = yesNoDataTemp[i].Question;
+                        startingDataPoint.Answers = [];
+                        var answerObject = new Object();
+                        answerObject.Answer = yesNoDataTemp[i].Answer;
+                        answerObject.Count = 1;
+                        startingDataPoint.Answers.push(answerObject);
+                        groupedYesNoData.push(startingDataPoint);
+                        continue;
+                    }
+                    var dataPoint = new Object();
+                    dataPoint.Question = yesNoDataTemp[i].Question;
+                    dataPoint.Answer = yesNoDataTemp[i].Answer;
+
+                    var questionFound = false;
+                    for (var j = 0; j < groupedYesNoData.length; j++) {
+                        if (groupedYesNoData[j].Question == dataPoint.Question) {
+                            questionFound = true;
+
+                            var answerFound = false;
+                            for (var k = 0; k < groupedYesNoData[j].Answers.length; k++) {
+                                if (groupedYesNoData[j].Answers[k].Answer == dataPoint.Answer) {
+                                    answerFound = true;
+                                    groupedYesNoData[j].Answers[k].Count += 1;
+                                }
+                            }
+
+                            if (answerFound == false) {
+                                var answerObject = new Object();
+                                answerObject.Answer = dataPoint.Answer;
+                                answerObject.Count = 1;
+                                groupedYesNoData[j].Answers.push(answerObject);
+                            }
+                        };
+                    };
+
+                    if (questionFound == false) {
+                        var questionObject = new Object();
+                        questionObject.Question = dataPoint.Question;
+                        var answerObject = new Object();
+                        answerObject.Answer = dataPoint.Answer;
+                        answerObject.Count = 1;
+                        questionObject.Answers.push(answerObject);
+                        groupedYesNoData.push(questionObject);
+                    }
+
+                };*/
                 return yesNoDataTemp;
             };
 
@@ -161,7 +212,7 @@ angular.module('elen7046ServerAndAdminApp')
                             ['Safari', 25.0]
                         ]
                     }];
-                    
+
                     pieChartConfigAndDataObj.pieChartConfig = {
                         options: {
 
@@ -194,7 +245,7 @@ angular.module('elen7046ServerAndAdminApp')
                         },
                         series: pieChartConfigAndDataObj.pieChartSeries
                     };
-                    
+
                     pieChartConfigAndData.push(pieChartConfigAndDataObj)
                 };
                 return pieChartConfigAndData;
