@@ -14,12 +14,12 @@ angular.module('elen7046ServerAndAdminApp')
             $scope.overallSummarySeries = [
                 {
                     "name": "Surveys Captured",
-                    "data": _mapCompletedSurveyData(),
+                    "data": _mapSummaryGraphData(),
                     type: "column"
             }];
 
             // Populate data into respective variables based on the answer type
-            function _mapCompletedSurveyData() {
+            function _mapSummaryGraphData() {
                 var dataPoints = [];
                 var JanuaryCount = 0;
                 var FebruaryCount = 0;
@@ -33,7 +33,6 @@ angular.module('elen7046ServerAndAdminApp')
                 var OctoberCount = 0;
                 var NovemberCount = 0;
                 var DecemberCount = 0;
-                console.log($scope.allCurrentYearSurveyData.length);
                 for (var i = 0; i < $scope.allCurrentYearSurveyData.length; i++) {
                     var surveyDate = new Date($scope.allCurrentYearSurveyData[i].DateCompleted)
                     if (surveyDate.getMonth() == '0') {
@@ -111,7 +110,7 @@ angular.module('elen7046ServerAndAdminApp')
                 loading: false,
                 size: {
                     height: 600,
-                    width: 1000
+                    width: 1150
                 },
                 series: $scope.overallSummarySeries,
                 yAxis: {
@@ -121,23 +120,86 @@ angular.module('elen7046ServerAndAdminApp')
                     }
                 },
                 xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec']
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                 }
             };
-            
-            // Config and series for the YESNO Questions
+
+            $scope.yesnoData = _mapYesNoData();
+
+            function _mapYesNoData() {
+                var yesNoDataTemp = [];
+                for (var i = 0; i < $scope.allCurrentYearSurveyData.length; i++) {
+                    for (var j = 0; j < $scope.allCurrentYearSurveyData[i].CompletedQuestionAnswers.length; j++) {
+                        if ($scope.allCurrentYearSurveyData[i].CompletedQuestionAnswers[j].AnswerType == 'YesNo') {
+                            yesNoDataTemp.push($scope.allCurrentYearSurveyData[i].CompletedQuestionAnswers[j]);
+                        }
+                    };
+                };
+                return yesNoDataTemp;
+            };
+
+            // Fetch all YesNo type completed survey questions
+
+
+            // Now I have a list of all YesNo questions from all completed surveys
+            // Now to group them by question
+
+            // Test case for multiple pie charts
+            $scope.pieCharts = _getPieChartData();
+
+            function _getPieChartData() {
+                var pieChartConfigAndData = [];
+                for (var i = 0; i < $scope.yesnoData.length; i++) {
+                    var pieChartConfigAndDataObj = new Object();
+                    pieChartConfigAndDataObj.pieChartSeries = [{
+                        type: "pie",
+                        "name": 'Pie Chart: ' + i,
+                        "data": [
+                            ['Firefox', 25.0],
+                            ['IE', 25.0],
+                            ['Chrome', 25.0],
+                            ['Safari', 25.0]
+                        ]
+                    }];
+                    
+                    pieChartConfigAndDataObj.pieChartConfig = {
+                        options: {
+
+                        },
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+                            }
+                        },
+                        title: {
+                            text: 'My Big Pie Chart: ' + i
+                        },
+                        loading: false,
+                        size: {
+                            height: 500,
+                            width: 500
+                        },
+                        series: pieChartConfigAndDataObj.pieChartSeries
+                    };
+                    
+                    pieChartConfigAndData.push(pieChartConfigAndDataObj)
+                };
+                return pieChartConfigAndData;
+            };
+
 
             $scope.reflow = function () {
                 $scope.$broadcast('highchartsng.reflow');

@@ -1,10 +1,21 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container offset3 span6">
-<div class="row">
-    <div>
-        <highchart id="chart1" config="overallSummaryConfig" class="span9"></highchart>
+    <div class="row">
+        <div>
+            <highchart id="chart1" config="overallSummaryConfig" class="span9"></highchart>
+        </div>
     </div>
 </div>
+
+<div class="container offset3 span6">
+    <div class="row">
+        <h3>Question Summary</h3>
+    </div>
+    <div ng-repeat="pieChart in pieCharts">
+        <div>
+            <highchart config="pieChart.pieChartConfig" class="span9"></highchart>
+        </div>
+    </div>
 </div>
 
 <!--<div class="row">
