@@ -136,7 +136,7 @@ angular.module('elen7046ServerAndAdminApp')
                     };
                 };
 
-                /*var groupedYesNoData = [];
+                var groupedYesNoData = [];
                 for (var i = 0; i < yesNoDataTemp.length; i++) {
                     if (i == 0) {
                         var startingDataPoint = new Object();
@@ -178,6 +178,7 @@ angular.module('elen7046ServerAndAdminApp')
                     if (questionFound == false) {
                         var questionObject = new Object();
                         questionObject.Question = dataPoint.Question;
+                        questionObject.Answers = [];
                         var answerObject = new Object();
                         answerObject.Answer = dataPoint.Answer;
                         answerObject.Count = 1;
@@ -185,8 +186,8 @@ angular.module('elen7046ServerAndAdminApp')
                         groupedYesNoData.push(questionObject);
                     }
 
-                };*/
-                return yesNoDataTemp;
+                };
+                return groupedYesNoData;
             };
 
             // Fetch all YesNo type completed survey questions
@@ -204,7 +205,7 @@ angular.module('elen7046ServerAndAdminApp')
                     var pieChartConfigAndDataObj = new Object();
                     pieChartConfigAndDataObj.pieChartSeries = [{
                         type: "pie",
-                        "name": 'Pie Chart: ' + i,
+                        "name": $scope.yesnoData[i].Question,
                         "data": [
                             ['Firefox', 25.0],
                             ['IE', 25.0],
@@ -236,7 +237,7 @@ angular.module('elen7046ServerAndAdminApp')
                             }
                         },
                         title: {
-                            text: 'My Big Pie Chart: ' + i
+                            text: $scope.yesnoData[i].Question
                         },
                         loading: false,
                         size: {
