@@ -196,7 +196,6 @@ angular.module('elen7046ServerAndAdminApp')
             // Now I have a list of all YesNo questions from all completed surveys
             // Now to group them by question
 
-            // Test case for multiple pie charts
             $scope.pieCharts = _getPieChartData();
 
             function _getPieChartData() {
@@ -208,13 +207,13 @@ angular.module('elen7046ServerAndAdminApp')
                         "name": $scope.yesnoData[i].Question,
                         "data": getPieChartData()
                     }];
-                    
-                    function getPieChartData(){
+
+                    function getPieChartData() {
                         var pieData = [];
-                            for (var j = 0; j < $scope.yesnoData[i].Answers.length; j++){
-                                pieData.push([$scope.yesnoData[i].Answers[j].Answer, $scope.yesnoData[i].Answers[j].Count]);
-                            }
-                            return pieData;
+                        for (var j = 0; j < $scope.yesnoData[i].Answers.length; j++) {
+                            pieData.push([$scope.yesnoData[i].Answers[j].Answer, $scope.yesnoData[i].Answers[j].Count]);
+                        }
+                        return pieData;
                     };
 
                     pieChartConfigAndDataObj.pieChartConfig = {
@@ -253,6 +252,146 @@ angular.module('elen7046ServerAndAdminApp')
                     pieChartConfigAndData.push(pieChartConfigAndDataObj)
                 };
                 return pieChartConfigAndData;
+            };
+
+            $scope.dropDownData = _mapDropDownData();
+
+            function _mapDropDownData() {
+                var dropDownDataTemp = [];
+
+                for (var i = 0; i < $scope.allCurrentYearSurveyData.length; i++) {
+                    for (var j = 0; j < $scope.allCurrentYearSurveyData[i].CompletedQuestionAnswers.length; j++) {
+                        if ($scope.allCurrentYearSurveyData[i].CompletedQuestionAnswers[j].AnswerType == 'Dropdown') {
+                            dropDownDataTemp.push($scope.allCurrentYearSurveyData[i].CompletedQuestionAnswers[j]);
+                        }
+                    };
+                };
+
+                var groupedDropDownData = [];
+                for (var i = 0; i < dropDownDataTemp.length; i++) {
+                    if (i == 0) {
+                        var startingDataPoint = new Object();
+                        startingDataPoint.Question = dropDownDataTemp[i].Question;
+                        startingDataPoint.Answers = [];
+                        var answerObject = new Object();
+                        answerObject.Answer = dropDownDataTemp[i].Answer;
+                        answerObject.Count = 1;
+                        startingDataPoint.Answers.push(answerObject);
+                        groupedDropDownData.push(startingDataPoint);
+                        continue;
+                    }
+                    var dataPoint = new Object();
+                    dataPoint.Question = dropDownDataTemp[i].Question;
+                    dataPoint.Answer = dropDownDataTemp[i].Answer;
+
+                    var questionFound = false;
+                    for (var j = 0; j < groupedDropDownData.length; j++) {
+                        if (groupedDropDownData[j].Question == dataPoint.Question) {
+                            questionFound = true;
+
+                            var answerFound = false;
+                            for (var k = 0; k < groupedDropDownData[j].Answers.length; k++) {
+                                if (groupedDropDownData[j].Answers[k].Answer == dataPoint.Answer) {
+                                    answerFound = true;
+                                    groupedDropDownData[j].Answers[k].Count += 1;
+                                }
+                            }
+
+                            if (answerFound == false) {
+                                var answerObject = new Object();
+                                answerObject.Answer = dataPoint.Answer;
+                                answerObject.Count = 1;
+                                groupedDropDownData[j].Answers.push(answerObject);
+                            }
+                        };
+                    };
+
+                    if (questionFound == false) {
+                        var questionObject = new Object();
+                        questionObject.Question = dataPoint.Question;
+                        questionObject.Answers = [];
+                        var answerObject = new Object();
+                        answerObject.Answer = dataPoint.Answer;
+                        answerObject.Count = 1;
+                        questionObject.Answers.push(answerObject);
+                        groupedDropDownData.push(questionObject);
+                    }
+
+                };
+                return groupedDropDownData;
+            };
+
+
+
+            $scope.horizontalBarCharts = _getHorizontalBarChartData();
+
+            function _getHorizontalBarChartData() {
+                var horizontalBarChartConfigAndData = [];
+                for (var i = 0; i < $scope.dropDownData.length; i++) {
+                    var horizontalBarChartDataAndConfig = new Object();
+                    horizontalBarChartDataAndConfig.barChartSeries = [
+                        {
+                            'name' : 'Responses',
+                            "data": _getBarChartData()
+                        }];
+
+                    function _getBarChartData() {
+                        var barData = [];
+                        for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
+                            barData.push([$scope.dropDownData[i].Answers[j].Count]);
+                        }
+                        return barData;
+                    };
+
+                    horizontalBarChartDataAndConfig.barChartConfig = {
+                        options: {
+                            chart: {
+                                type: 'bar'
+                            }
+                        },
+                        plotOptions: {
+                            bar: {
+                                dataLabels: {
+                                    enabled: true
+                                }
+                            }
+                        },
+                        title: {
+                            text: $scope.dropDownData[i].Question
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        loading: false,
+                        size: {
+                            height: 500,
+                            width: 500
+                        },
+                        series: horizontalBarChartDataAndConfig.barChartSeries,
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: ''
+                            }
+                        },
+                        xAxis: {
+                            categories: _getBarChartCategories()
+                        }
+                    };
+
+                    function _getBarChartCategories() {
+                        var barChartCategories = [];
+
+                        for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
+                            barChartCategories.push($scope.dropDownData[i].Answers[j].Answer);
+                        };
+
+                        return barChartCategories;
+                    };
+
+                    horizontalBarChartConfigAndData.push(horizontalBarChartDataAndConfig);
+                }
+                return horizontalBarChartConfigAndData;
             };
 
 
