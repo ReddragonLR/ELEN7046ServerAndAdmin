@@ -206,13 +206,16 @@ angular.module('elen7046ServerAndAdminApp')
                     pieChartConfigAndDataObj.pieChartSeries = [{
                         type: "pie",
                         "name": $scope.yesnoData[i].Question,
-                        "data": [
-                            ['Firefox', 25.0],
-                            ['IE', 25.0],
-                            ['Chrome', 25.0],
-                            ['Safari', 25.0]
-                        ]
+                        "data": getPieChartData()
                     }];
+                    
+                    function getPieChartData(){
+                        var pieData = [];
+                            for (var j = 0; j < $scope.yesnoData[i].Answers.length; j++){
+                                pieData.push([$scope.yesnoData[i].Answers[j].Answer, $scope.yesnoData[i].Answers[j].Count]);
+                            }
+                            return pieData;
+                    };
 
                     pieChartConfigAndDataObj.pieChartConfig = {
                         options: {
