@@ -321,177 +321,168 @@ angular.module('elen7046ServerAndAdminApp')
                 return groupedDropDownData;
             };
 
-
-
-            $scope.horizontalBarCharts = _getHorizontalBarChartData();
-
-            function _getHorizontalBarChartData() {
-                var horizontalBarChartConfigAndData = [];
-                for (var i = 0; i < $scope.dropDownData.length; i++) {
-                    var horizontalBarChartDataAndConfig = new Object();
-                    horizontalBarChartDataAndConfig.barChartSeries = [
-                        {
-                            'name' : 'Responses',
-                            "data": _getBarChartData()
-                        }];
-
-                    function _getBarChartData() {
-                        var barData = [];
-                        for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
-                            barData.push([$scope.dropDownData[i].Answers[j].Count]);
+            $scope.dropDownBarChartSummary = {
+                title: {
+                    text: 'Stacked column chart'
+                },
+                xAxis: {
+                    categories: _getUniqueAnswerOptions()
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total fruit consumption'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                         }
-                        return barData;
-                    };
-
-                    horizontalBarChartDataAndConfig.barChartConfig = {
-                        options: {
-                            chart: {
-                                type: 'bar'
-                            }
-                        },
-                        plotOptions: {
-                            bar: {
-                                dataLabels: {
-                                    enabled: true
+                    }
+                },
+                options: {
+                    chart: {
+                        type: 'column'
+                    },
+                    legend: {
+                        align: 'right',
+                        x: -70,
+                        verticalAlign: 'top',
+                        y: 20,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.x + '</b><br/>' +
+                                this.series.name + ': ' + this.y + '<br/>' +
+                                'Total: ' + this.point.stackTotal;
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+                            dataLabels: {
+                                enabled: true,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                style: {
+                                    textShadow: '0 0 3px black, 0 0 3px black'
                                 }
                             }
-                        },
-                        title: {
-                            text: $scope.dropDownData[i].Question
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        loading: false,
-                        size: {
-                            height: 500,
-                            width: 500
-                        },
-                        series: horizontalBarChartDataAndConfig.barChartSeries,
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: ''
-                            }
-                        },
-                        xAxis: {
-                            categories: _getBarChartCategories()
                         }
-                    };
-
-                    function _getBarChartCategories() {
-                        var barChartCategories = [];
-
-                        for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
-                            barChartCategories.push($scope.dropDownData[i].Answers[j].Answer);
-                        };
-
-                        return barChartCategories;
-                    };
-
-                    horizontalBarChartConfigAndData.push(horizontalBarChartDataAndConfig);
-                }
-                return horizontalBarChartConfigAndData;
+                    }
+                },
+                series: _getDropDownSummarySeries()
             };
 
+            function _getDropDownUniqueQuestions() {
+                var questions = [];
+                for (var i = 0; i < $scope.dropDownData.length; i++) {
+                    questions.push($scope.dropDownData[i].Question);
+                }
+                return questions;
+            };
+            
+            function _getUniqueAnswerOptions(){
+                // get all answerOptions
+                var allAnswerOptions = [];
+                for (var i = 0; i < $scope.dropDownData.length; i++) {
+                    for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
+                        allAnswerOptions.push($scope.dropDownData[i].Answers[j].Answer);
+                    }
+                }
+
+                var uniqueAnswerOptions = [];
+
+                for (var i = 0; i < allAnswerOptions.length; i++) {
+                    if (i == 0) {
+                        uniqueAnswerOptions.push(allAnswerOptions[i]);
+                    } else {
+                        var uniqueAnswerOptionFound = false;
+                        for (var j = 0; j < uniqueAnswerOptions.length; j++) {
+                            if (uniqueAnswerOptions[j] == allAnswerOptions[i]) {
+                                uniqueAnswerOptionFound = true;
+                                break;
+                            }
+                        }
+                        if (uniqueAnswerOptionFound == false) {
+                            uniqueAnswerOptions.push(allAnswerOptions[i]);
+                        }
+                    }
+                }
+                return uniqueAnswerOptions;
+            };
+
+            function _getDropDownSummarySeries() {
+                
+                var uniqueAnswerOptionQuestions = _getDropDownUniqueQuestions();
+                console.log(uniqueAnswerOptionQuestions);
+                
+                // get all answerOptions
+                var allAnswerOptions = [];
+                for (var i = 0; i < $scope.dropDownData.length; i++) {
+                    for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
+                        allAnswerOptions.push($scope.dropDownData[i].Answers[j].Answer);
+                    }
+                }
+
+                var uniqueAnswerOptions = [];
+
+                for (var i = 0; i < allAnswerOptions.length; i++) {
+                    if (i == 0) {
+                        uniqueAnswerOptions.push(allAnswerOptions[i]);
+                    } else {
+                        var uniqueAnswerOptionFound = false;
+                        for (var j = 0; j < uniqueAnswerOptions.length; j++) {
+                            if (uniqueAnswerOptions[j] == allAnswerOptions[i]) {
+                                uniqueAnswerOptionFound = true;
+                                break;
+                            }
+                        }
+                        if (uniqueAnswerOptionFound == false) {
+                            uniqueAnswerOptions.push(allAnswerOptions[i]);
+                        }
+                    }
+                }
+
+                var dropDownSeries = [];
+
+                for (var i = 0; i < uniqueAnswerOptions.length; i++) {
+                    var dropDownSeriesObj = new Object();
+                    dropDownSeriesObj.name = uniqueAnswerOptions[i];
+
+                    dropDownSeriesObj.data = [];
+                    for (var j = 0; j < $scope.dropDownData.length; j++) {
+                        for (var k = 0; k < $scope.dropDownData[j].Answers.length; k++) {
+                            if (uniqueAnswerOptions[i] == $scope.dropDownData[j].Answers[k].Answer) {
+                                dropDownSeriesObj.data.push($scope.dropDownData[j].Answers[k].Count);
+                            } else {
+                                dropDownSeriesObj.data.push(0);
+                            }
+                        }
+                    }
+
+                    dropDownSeries.push(dropDownSeriesObj);
+                }
+                var stuff = [{
+                    name: 'John',
+                    data: [5, 3, 0, 7, 2]
+                    }, {
+                    name: 'Jane',
+                    data: [2, 2, 3, 0, 1]
+                    }, {
+                    name: 'Joe',
+                    data: [3, 4, 0, 2, 5]
+                    }];
+                return stuff;
+            };
 
             $scope.reflow = function () {
                 $scope.$broadcast('highchartsng.reflow');
             };
         });
-
-
-        // Variable to hold the data for the YESNO report
-        //$scope.dichotomousQuestionData = [];
-
-        // Variable to store data for the range based questions
-        //$scope.rangeBasedQuestionData = [];
-
-
-        /*if ($scope.allCurrentYearSurveyData[i].AnswerType == 'YesNo') {
-                            $scope.dichotomousQuestionData.push($scope.allCurrentYearSurveyData[i]);
-                        }
-                        if ($scope.allCurrentYearSurveyData[i].AnswerType == 'DropDown') {
-                            $scope.rangeBasedQuestionData.push($scope.allCurrentYearSurveyData[i]);
-                        }*/
-
-
-
-
-
-        /*$scope.chartTypes = [
-    {"id": "line", "title": "Line"},
-    {"id": "spline", "title": "Smooth line"},
-    {"id": "area", "title": "Area"},
-    {"id": "areaspline", "title": "Smooth area"},
-    {"id": "column", "title": "Column"},
-    {"id": "bar", "title": "Bar"},
-    {"id": "pie", "title": "Pie"},
-    {"id": "scatter", "title": "Scatter"}
-  ];
-
-  $scope.dashStyles = [
-    {"id": "Solid", "title": "Solid"},
-    {"id": "ShortDash", "title": "ShortDash"},
-    {"id": "ShortDot", "title": "ShortDot"},
-    {"id": "ShortDashDot", "title": "ShortDashDot"},
-    {"id": "ShortDashDotDot", "title": "ShortDashDotDot"},
-    {"id": "Dot", "title": "Dot"},
-    {"id": "Dash", "title": "Dash"},
-    {"id": "LongDash", "title": "LongDash"},
-    {"id": "DashDot", "title": "DashDot"},
-    {"id": "LongDashDot", "title": "LongDashDot"},
-    {"id": "LongDashDotDot", "title": "LongDashDotDot"}
-  ];*/
-
-
-
-        /*$scope.chartStack = [
-          {"id": '', "title": "No"},
-          {"id": "normal", "title": "Normal"},
-          {"id": "percent", "title": "Percent"}
-        ];
-
-        $scope.addPoints = function () {
-          var seriesArray = $scope.chartConfig.series;
-          var rndIdx = Math.floor(Math.random() * seriesArray.length);
-          seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
-        };
-
-        $scope.addSeries = function () {
-          var rnd = []
-          for (var i = 0; i < 10; i++) {
-            rnd.push(Math.floor(Math.random() * 20) + 1)
-          }
-          $scope.chartConfig.series.push({
-            data: rnd
-          })
-        }
-
-        $scope.removeRandomSeries = function () {
-          var seriesArray = $scope.chartConfig.series;
-          var rndIdx = Math.floor(Math.random() * seriesArray.length);
-          seriesArray.splice(rndIdx, 1)
-        }
-
-        $scope.removeSeries = function (id) {
-          var seriesArray = $scope.chartConfig.series;
-          seriesArray.splice(id, 1)
-        }
-
-        $scope.toggleHighCharts = function () {
-          this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
-        }
-
-        $scope.replaceAllSeries = function () {
-          var data = [
-            { name: "first", data: [10] },
-            { name: "second", data: [3] },
-            { name: "third", data: [13] }
-          ];
-          $scope.chartConfig.series = data;
-        };*/
-
-
-
     });
