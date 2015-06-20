@@ -10,7 +10,7 @@
                     <span ng-if="question.AnswerType == 'Text'">
                     <input type="Text" ng-model="question.Answer"/>
                 </span>
-                    <div ng-if="question.AnswerType == 'Radio'" class="btn-group">
+                    <div ng-if="question.AnswerType == 'YesNo'" class="btn-group">
                         <span ng-repeat="answerOption in question.AnswerOptions">
                         <input type="radio" name="radioAnswerGroup" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
                     </span>
