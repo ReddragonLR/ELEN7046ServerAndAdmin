@@ -12,28 +12,12 @@
                 </span>
                     <div ng-if="question.AnswerType == 'YesNo'" class="btn-group">
                         <span ng-repeat="answerOption in question.AnswerOptions">
-                        <input type="radio" name="radioAnswerGroup" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
-                    </span>
+                            <input type="radio" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
+                        </span>
                     </div>
                     <span ng-if="question.AnswerType == 'Dropdown'">
-                    <!--<select ng-repeat="answerOption in question.AnswerOptions">
-                        <option type="checkbox" name="checkboxAnswerList" ng-model="question.Answer" value="answerOption">{{answerOption}}</label>
-                    </select>-->
-                        <div class="btn-group" dropdown is-open="status.isopen">
-                            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">Button dropdown <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a>
-                                </li>
-                                <li><a href="#">Another action</a>
-                                </li>
-                                <li><a href="#">Something else here</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <select ng-model="question.Answer" ng-options="answerOption for answerOption in question.AnswerOptions">
+                        </select>
                     </span>
                 </div>
                 <input type="submit" ng-click="submitSurvey(survey)" value="Submit" />

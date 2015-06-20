@@ -15,6 +15,7 @@ angular.module('elen7046ServerAndAdminApp')
 
         // Function to submit the survey
         $scope.submitSurvey = function (survey) {
+            console.log(survey);
             $http.post('/api/completedSurveys', {
                 CompletedQuestionAnswers: _mapCapturedQuestionAnswers(survey),
                 DateCompleted: Date.now(),
