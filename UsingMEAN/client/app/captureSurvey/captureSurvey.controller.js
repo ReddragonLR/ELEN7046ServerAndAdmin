@@ -16,7 +16,20 @@ angular.module('elen7046ServerAndAdminApp')
         // Function to submit the survey
         $scope.submitSurvey = function (survey) {
             console.log(survey);
-            $http.post('/api/completedSurveys', {
+            if (sessionStorage.getItem("completedsurveys"))
+            {
+                completedSurveys = JSON.parse(sessionStorage.getItem("completedsurveys"));
+                completedSurveys.push(_mapCapturedQuestionAnswers(survey));
+                sessionStorage.setItem("completedsurveys", JSON.stringify(completedSurveys));
+                window.location = '/captureSurveySuccess'
+            }
+            else{
+                var completedSurveys = [];
+                completedSurveys.push(_mapCapturedQuestionAnswers(survey));
+                sessionStorage.setItem("completedsurveys", JSON.stringify(completedSurveys));
+                window.location = '/captureSurveySuccess'
+            }
+            /*$http.post('/api/completedSurveys', {
                 CompletedQuestionAnswers: _mapCapturedQuestionAnswers(survey),
                 DateCompleted: Date.now(),
                 SurveyTaker: 'Some Random Guy',
@@ -25,7 +38,7 @@ angular.module('elen7046ServerAndAdminApp')
             }).success(function () {
                 console.log('SUCCESS');
                 window.location = '/captureSurveySuccess'
-            });
+            });*/
         };
 
         function _mapCapturedQuestionAnswers(survey) {

@@ -1,0 +1,15 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="col-md-12">
+    This is the localstorage view.
+</div>
+
+<div>
+    <form novalidate class="css-form">
+        <p ng-model="locallyStoredCompletedSurveys">
+            There are currently {{locallyStoredCompletedSurveys}} locally stored surveys
+        </p>
+        <div ng-if="locallyStoredCompletedSurveys != 0">
+            <input type="submit" ng-click="submitAllCompletedSurveys()" value="Submit To Server" />
+        </div>
+    </form>
+</div>

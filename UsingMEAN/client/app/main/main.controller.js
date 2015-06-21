@@ -24,4 +24,14 @@ angular.module('elen7046ServerAndAdminApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
     });*/
+    
+    $scope.localStorageSupported = _checkIfLocalStorageSupported();
+
+        function _checkIfLocalStorageSupported() {
+            if (typeof (Storage) !== "undefined") {
+                return true;
+            } else {
+                return false;
+            }
+        };
   });
