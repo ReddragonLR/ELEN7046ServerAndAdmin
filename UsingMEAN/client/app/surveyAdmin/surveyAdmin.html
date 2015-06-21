@@ -6,12 +6,16 @@
         <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys" style="cursor: pointer;">
             <form novalidate class="css-form">
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
-                    <input type="text" ng-model="question.Question" />
+                    <div>
+                        <p>Question Text:</p>
+                        <textarea type="text" ng-model="question.Question" />
+                    </div>
                     <div class="btn-group">
-                        <p>Choose Response Type</p>
+                        <p>Choose Response Type:</p>
                         <span>
-                            <input type="radio" name="radioAnswerGroup" value="Radio"/>Radio<br/>
+                            <input type="radio" name="radioAnswerGroup" value="YesNo"/>Radio<br/>
                             <input type="radio" name="radioAnswerGroup" value="Text"/>Text<br/>
+                            <input type="radio" name="radioAnswerGroup" value="Dropdown"/>Dropdown<br/>
                         </span>
                     </div>
                     <!--<p>{{question.Question}}</p>
