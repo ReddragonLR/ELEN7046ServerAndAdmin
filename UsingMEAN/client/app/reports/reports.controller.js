@@ -418,56 +418,23 @@ angular.module('elen7046ServerAndAdminApp')
             };
 
             function _getDropDownSummarySeries() {
-                
                 var uniqueAnswerOptionQuestions = _getDropDownUniqueQuestions();
-                console.log(uniqueAnswerOptionQuestions);
+                var uniqueDropDownQuestions = _getDropDownUniqueQuestions();
                 
-                // get all answerOptions
-                var allAnswerOptions = [];
-                for (var i = 0; i < $scope.dropDownData.length; i++) {
-                    for (var j = 0; j < $scope.dropDownData[i].Answers.length; j++) {
-                        allAnswerOptions.push($scope.dropDownData[i].Answers[j].Answer);
-                    }
-                }
-
-                var uniqueAnswerOptions = [];
-
-                for (var i = 0; i < allAnswerOptions.length; i++) {
-                    if (i == 0) {
-                        uniqueAnswerOptions.push(allAnswerOptions[i]);
-                    } else {
-                        var uniqueAnswerOptionFound = false;
-                        for (var j = 0; j < uniqueAnswerOptions.length; j++) {
-                            if (uniqueAnswerOptions[j] == allAnswerOptions[i]) {
-                                uniqueAnswerOptionFound = true;
-                                break;
-                            }
-                        }
-                        if (uniqueAnswerOptionFound == false) {
-                            uniqueAnswerOptions.push(allAnswerOptions[i]);
+                var dropDownSummarySeries = [];
+                
+                for (var i = 0; i < uniqueDropDownQuestions.length; i++){
+                    if (i ==0){
+                        var initialDropDownQuestionSummaryObj = new Object();
+                        initialDropDownQuestionSummaryObj.Question = uniqueDropDownQuestions[i];
+                        
+                        initialDropDownQuestionSummaryObj.data = [];
+                        for (var j = 0; j < $scope.dropDownData.length; j++){
+                            
                         }
                     }
                 }
-
-                var dropDownSeries = [];
-
-                for (var i = 0; i < uniqueAnswerOptions.length; i++) {
-                    var dropDownSeriesObj = new Object();
-                    dropDownSeriesObj.name = uniqueAnswerOptions[i];
-
-                    dropDownSeriesObj.data = [];
-                    for (var j = 0; j < $scope.dropDownData.length; j++) {
-                        for (var k = 0; k < $scope.dropDownData[j].Answers.length; k++) {
-                            if (uniqueAnswerOptions[i] == $scope.dropDownData[j].Answers[k].Answer) {
-                                dropDownSeriesObj.data.push($scope.dropDownData[j].Answers[k].Count);
-                            } else {
-                                dropDownSeriesObj.data.push(0);
-                            }
-                        }
-                    }
-
-                    dropDownSeries.push(dropDownSeriesObj);
-                }
+                
                 var stuff = [{
                     name: 'John',
                     data: [5, 3, 0, 7, 2]

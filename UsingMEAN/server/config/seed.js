@@ -107,6 +107,19 @@ Survey.find({}).remove(function () {
         CreatedBy: 'Seeded Survey Guy',
         State: 'Active',
         Name: 'Medical Health Survey'
+    },{
+        QuestionAnswers: [{
+                Question: 'What is your favourite food?',
+                AnswerType: 'Text'
+    },
+            {
+                Question: 'What is your favourite restaurant? ',
+                AnswerType: 'Text',
+    }],
+        CreatedDate: new Date('01.02.2015'),
+        CreatedBy: 'Seeded Survey Guy',
+        State: 'Active',
+        Name: 'Sample Food Survey'
     }, function () {
         console.log('Seeded sample surveys');
     })
