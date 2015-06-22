@@ -55,7 +55,7 @@ Survey.find({}).remove(function () {
                 AnswerType: 'Text'
     },
             {
-                Question: 'Which age group do you fall into?',
+                Question: 'Which age group do you fall into? ',
                 AnswerType: 'Dropdown',
                 AnswerOptions: ['10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80+']
     },
@@ -111,10 +111,17 @@ Survey.find({}).remove(function () {
         QuestionAnswers: [{
                 Question: 'What is your favourite food?',
                 AnswerType: 'Text'
-    },
-            {
+    },{
                 Question: 'What is your favourite restaurant? ',
                 AnswerType: 'Text',
+    },{
+                Question: 'Are you  vegetarian?',
+                AnswerType: 'YesNo',
+                AnswerOptions: ['Yes', 'No', 'Not Sure']
+    },{
+                Question: 'What flavours do you like out of these? ',
+                AnswerType: 'Dropdown',
+                AnswerOptions: ['Sour', 'Sweet', 'Hot']
     }],
         CreatedDate: new Date('01.02.2015'),
         CreatedBy: 'Seeded Survey Guy',
