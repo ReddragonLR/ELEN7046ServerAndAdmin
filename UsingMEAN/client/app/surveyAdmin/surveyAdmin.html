@@ -2,9 +2,12 @@
 
 <div class="container">
     Choose a survey from the list below:
+    <br/>
+    <input type="button" ng-click="addSurvey()" value="add survey"/>
     <accordion close-others="oneAtATime">
         <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys" style="cursor: pointer;">
             <form novalidate class="css-form">
+                <input type="button" ng-click="removeSurvey(survey)" value="remove survey"/>
                 <input type="button" ng-click="addQuestion(survey)" value="Add Question" />
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <div>

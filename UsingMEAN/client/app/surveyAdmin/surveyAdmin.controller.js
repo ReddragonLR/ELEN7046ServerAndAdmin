@@ -49,6 +49,7 @@ angular.module('elen7046ServerAndAdminApp')
                 for (var j = 0; j < $scope.allSurveys[i].QuestionAnswers.length; j++) {
                     if ($scope.allSurveys[i].QuestionAnswers[j]._id == question._id) {
                         $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(answerOptionIndex, 1);
+                        break;
                     }
                 }
             }
@@ -60,6 +61,7 @@ angular.module('elen7046ServerAndAdminApp')
                     if ($scope.allSurveys[i].QuestionAnswers[j]._id == question._id) {
                         var lastIndex = $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.length;
                         $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(lastIndex, 0, "");
+                        break;
                     }
                 }
             }
@@ -74,6 +76,7 @@ angular.module('elen7046ServerAndAdminApp')
             for (var i = 0; i < $scope.allSurveys.length; i++) {
                 if ($scope.allSurveys[i]._id == survey._id) {
                     $scope.allSurveys[i].QuestionAnswers.splice(0, 0, newSurveyQuestion);
+                    break;
                 }
             }
         };
@@ -82,7 +85,39 @@ angular.module('elen7046ServerAndAdminApp')
             for (var i = 0; i < $scope.allSurveys.length; i++) {
                 if ($scope.allSurveys[i]._id == survey._id) {
                     $scope.allSurveys[i].QuestionAnswers.splice(questionIndex, 1);
+                    break;
                 }
             }
+        };
+
+        $scope.addSurvey = function () {
+            var newSurvey = new Object();
+            newSurvey.QuestionAnswers = [];
+            var newSurveyQuestionAnswerObj = new Object();
+            newSurveyQuestionAnswerObj.Question = "Set New Question";
+            newSurveyQuestionAnswerObj.AnswerType = "Text";
+            newSurveyQuestionAnswerObj.AnswerOptions = [];
+
+            newSurvey.QuestionAnswers.push(newSurveyQuestionAnswerObj);
+            newSurvey.CreatedDate = Date.UTC();
+            newSurvey.CreatedBy = "Admin Guy";
+            newSurvey.State = "Active";
+            newSurvey.Name = "New Survey";
+
+            $http.post('/api/surveys', newSurvey).success(function () {
+                $http.get('/api/surveys').success(function (allSurveys) {
+                    $scope.allSurveys = allSurveys;
+                    socket.syncUpdates('survey', $scope.allSurveys);
+                });
+            });
+        };
+
+        $scope.removeSurvey = function (survey) {
+            $http.delete('/api/surveys/' + survey._id).success(function () {
+                $http.get('/api/surveys').success(function (allSurveys) {
+                    $scope.allSurveys = allSurveys;
+                    socket.syncUpdates('survey', $scope.allSurveys);
+                });
+            });
         };
     });

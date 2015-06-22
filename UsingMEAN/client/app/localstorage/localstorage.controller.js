@@ -27,7 +27,7 @@ angular.module('elen7046ServerAndAdminApp')
                     var completedSurveyData = completedSurveys.pop();
                     $http.post('/api/completedSurveys', {
                         CompletedQuestionAnswers: completedSurveyData,
-                        DateCompleted: Date.now(),
+                        DateCompleted: Date.UTC(),
                         SurveyTaker: 'Some Random Guy',
                         SurveySupervisor: 'Some Random Supervisor',
                         SurveyName: completedSurveyData.SurveyName
