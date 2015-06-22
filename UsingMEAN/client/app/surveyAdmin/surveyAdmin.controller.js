@@ -79,6 +79,10 @@ angular.module('elen7046ServerAndAdminApp')
         };
 
         $scope.removeQuestion = function (survey, questionIndex) {
-            alert("asdasd");
+            for (var i = 0; i < $scope.allSurveys.length; i++){
+                if ($scope.allSurveys[i].Name == survey.Name){
+                    $scope.allSurveys[i].QuestionAnswers.splice(questionIndex, 1);
+                }
+            }
         };
     });

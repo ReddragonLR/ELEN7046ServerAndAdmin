@@ -8,6 +8,9 @@
                 <input type="button" ng-click="addQuestion(survey)" value="Add Question" />
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <div>
+                        <input type="button" ng-click="removeQuestion(survey, $index)" value="remove question" />
+                    </div>
+                    <div>
                         <p>Question Text:</p>
                         <textarea type="text" ng-model="question.Question" />
                     </div>
@@ -35,7 +38,6 @@
                             </div>
                         </div>
                     </div>
-                    <input type="button" ng-click="removeQuestion(survey, $index)" value="remove question"/>
                 </div>
                 <input type="submit" ng-click="updateSurveyQuestions(survey)" value="Submit" />
             </form>
