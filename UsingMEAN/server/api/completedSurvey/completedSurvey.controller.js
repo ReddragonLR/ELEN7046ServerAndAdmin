@@ -48,15 +48,15 @@ exports.show = function (req, res) {
 exports.create = function (req, res) {
     if (req.query.option == 'bulkCompletedSurveyUpload') {
         console.log(req.body);
-        /*var completedSurveyCollection = req.body;
+        var completedSurveyCollection = req.body;
         for (var i = 0; i < completedSurveyCollection.length; i++) {
-            CompletedSurvey.create(req.body, function (err, completedSurvey) {
+            CompletedSurvey.create(completedSurveyCollection[i], function (err, completedSurvey) {
                 if (err) {
                     return handleError(res, err);
                 }
             });
         }
-        return res.json(201, completedSurvey);*/
+        return res.json(201, completedSurveyCollection);
     } else {
         CompletedSurvey.create(req.body, function (err, completedSurvey) {
             if (err) {
@@ -65,12 +65,6 @@ exports.create = function (req, res) {
             return res.json(201, completedSurvey);
         });
     }
-    CompletedSurvey.create(req.body, function (err, completedSurvey) {
-        if (err) {
-            return handleError(res, err);
-        }
-        return res.json(201, completedSurvey);
-    });
 };
 
 // Updates an existing completedSurvey in the DB.
