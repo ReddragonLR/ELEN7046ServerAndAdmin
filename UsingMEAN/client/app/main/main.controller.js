@@ -25,6 +25,7 @@ angular.module('elen7046ServerAndAdminApp')
       socket.unsyncUpdates('thing');
     });*/
     
+    
     $scope.localStorageSupported = _checkIfLocalStorageSupported();
 
         function _checkIfLocalStorageSupported() {
