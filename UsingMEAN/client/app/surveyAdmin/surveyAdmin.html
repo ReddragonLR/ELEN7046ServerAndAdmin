@@ -21,12 +21,13 @@
                             <div ng-show="question.AnswerType == 'YesNo'">
                                 <div ng-repeat="answerOption in question.AnswerOptions track by $index">
                                     <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
+                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove"/>
                                 </div>
                             </div>
                             <div ng-show="question.AnswerType == 'Dropdown'">
                                 <div ng-repeat="answerOption in question.AnswerOptions  track by $index">
                                     <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
-                                    <input type="submit" ng-click="deleteAnswerOption($index, question)" value="remove"/>
+                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove"/>
                                 </div>
                             </div>
                         </div>
