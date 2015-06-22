@@ -37,6 +37,7 @@ angular.module('elen7046ServerAndAdminApp')
 
         // Update the questions in the survey
         $scope.updateSurveyQuestions = function (survey) {
+            console.log(survey);
             $http.delete('/api/surveys/' + survey._id).success(function () {
                 $http.post('/api/surveys/', survey).error(function (err) {
                     console.log(err);
@@ -44,4 +45,15 @@ angular.module('elen7046ServerAndAdminApp')
             });
             console.log('Survey questions updated');
         }
+
+        $scope.deleteAnswerOption = function (answerOptionIndex, question) {
+            var updatedAllSurveys = $scope.allSurveys;
+            for (var i = 0; i < updatedAllSurveys.length; i++) {
+                for (var j = 0; j < updatedAllSurveys[i].QuestionAnswers.length; j++) {
+                    if (updatedAllSurveys[i].QuestionAnswers[j].Question == question.Question) {
+                        $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(answerOptionIndex, 1);
+                    }
+                }
+            }
+        };
     });
