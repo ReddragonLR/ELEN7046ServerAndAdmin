@@ -55,7 +55,7 @@ Survey.find({}).remove(function () {
                 AnswerType: 'Text'
     },
             {
-                Question: 'Which age group do you fall into? ',
+                Question: 'Which age group do you fall into?',
                 AnswerType: 'Dropdown',
                 AnswerOptions: ['10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80+']
     },

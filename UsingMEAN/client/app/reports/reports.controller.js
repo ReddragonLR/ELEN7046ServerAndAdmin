@@ -323,7 +323,7 @@ angular.module('elen7046ServerAndAdminApp')
 
             $scope.dropDownBarChartSummary = {
                 title: {
-                    text: 'Stacked column chart'
+                    text: 'Dropdown Question Summary'
                 },
                 xAxis: {
                     categories: _getUniqueAnswerOptions()
@@ -418,32 +418,38 @@ angular.module('elen7046ServerAndAdminApp')
             };
 
             function _getDropDownSummarySeries() {
-                var uniqueAnswerOptionQuestions = _getDropDownUniqueQuestions();
+                var uniqueAnswerOptions = _getUniqueAnswerOptions();
                 var uniqueDropDownQuestions = _getDropDownUniqueQuestions();
                 
-                var dropDownSummarySeries = [];
-                
+                var temp = [];
                 for (var i = 0; i < uniqueDropDownQuestions.length; i++){
-                    if (i ==0){
-                        var initialDropDownQuestionSummaryObj = new Object();
-                        initialDropDownQuestionSummaryObj.Question = uniqueDropDownQuestions[i];
-                        
-                        initialDropDownQuestionSummaryObj.data = [];
-                        for (var j = 0; j < $scope.dropDownData.length; j++){
-                            
-                        }
+                    var obj = new Object();
+                    obj.Question = uniqueDropDownQuestions[i];
+                    obj.ChartAnswerOptions = [];
+                    for (var j = 0; j < uniqueAnswerOptions.length; j++){
+                        var obj2 = new Object();
+                        obj2.AnswerOption = uniqueAnswerOptions[j];
+                        obj2.AnswerCount = j;
+                        obj.ChartAnswerOptions.push(obj2.AnswerOption)
                     }
+                    temp.push(obj);
                 }
                 
                 var stuff = [{
-                    name: 'John',
-                    data: [5, 3, 0, 7, 2]
+                    name: 'Which age group do you fall into?',
+                    data: [1, 2, 4, 0, 0, 0, 0, 0]
                     }, {
-                    name: 'Jane',
-                    data: [2, 2, 3, 0, 1]
+                    name: 'How long on average did you wait?',
+                    data: [0, 0, 0, 1, 1, 0, 0, 0]
                     }, {
-                    name: 'Joe',
-                    data: [3, 4, 0, 2, 5]
+                    name: 'How satisfied are you with the skill and competency of the staff?',
+                    data: [0, 0, 0, 0, 0, 1, 1, 0]
+                    }, {
+                    name: 'Overall cleanliness of the hospital?',
+                    data: [0, 0, 0, 0, 0, 0, 1, 0]
+                    }, {
+                    name: 'Efficiency of nursing care?',
+                    data: [0, 0, 0, 0, 0, 0, 0, 1]
                     }];
                 return stuff;
             };
