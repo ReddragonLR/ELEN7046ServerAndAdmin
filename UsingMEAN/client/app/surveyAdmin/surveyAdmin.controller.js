@@ -37,7 +37,6 @@ angular.module('elen7046ServerAndAdminApp')
 
         // Update the questions in the survey
         $scope.updateSurveyQuestions = function (survey) {
-            console.log(survey);
             $http.delete('/api/surveys/' + survey._id).success(function () {
                 $http.post('/api/surveys/', survey).error(function (err) {
                     console.log(err);

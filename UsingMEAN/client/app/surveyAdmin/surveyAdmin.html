@@ -19,12 +19,12 @@
                         </span>
                         <div class="btn-group">
                             <div ng-show="question.AnswerType == 'YesNo'">
-                                <div ng-repeat="answerOption in question.AnswerOptions">
+                                <div ng-repeat="answerOption in question.AnswerOptions track by $index">
                                     <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
                                 </div>
                             </div>
                             <div ng-show="question.AnswerType == 'Dropdown'">
-                                <div ng-repeat="answerOption in question.AnswerOptions">
+                                <div ng-repeat="answerOption in question.AnswerOptions  track by $index">
                                     <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
                                 </div>
                             </div>
