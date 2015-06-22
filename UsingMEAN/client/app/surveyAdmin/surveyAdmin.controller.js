@@ -45,10 +45,9 @@ angular.module('elen7046ServerAndAdminApp')
         }
 
         $scope.deleteAnswerOption = function (answerOptionIndex, question) {
-            var updatedAllSurveys = $scope.allSurveys;
-            for (var i = 0; i < updatedAllSurveys.length; i++) {
-                for (var j = 0; j < updatedAllSurveys[i].QuestionAnswers.length; j++) {
-                    if (updatedAllSurveys[i].QuestionAnswers[j].Question == question.Question) {
+            for (var i = 0; i < $scope.allSurveys.length; i++) {
+                for (var j = 0; j < $scope.allSurveys[i].QuestionAnswers.length; j++) {
+                    if ($scope.allSurveys[i].QuestionAnswers[j].Question == question.Question) {
                         $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(answerOptionIndex, 1);
                     }
                 }
