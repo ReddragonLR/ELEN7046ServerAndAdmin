@@ -21,15 +21,16 @@ angular.module('elen7046ServerAndAdminApp')
             return route === $location.path();
         };
 
-        $scope.localStorageSupported = _checkIfLocalStorageSupported();
-
-        function _checkIfLocalStorageSupported() {
-            if (typeof (Storage) !== "undefined") {
-                return true;
-            } else {
-                return false;
+        // Update $scope.localStorageItemCount in order for the badge to update accordingly
+        $scope.localStorageItemCount = _getLocalStorageCount();
+    
+        function _getLocalStorageCount(){
+            if (sessionStorage.getItem("completedsurveys")){
+                var completedSurveys = JSON.parse(sessionStorage.getItem("completedsurveys"));
+                return completedSurveys.length;
+            }
+            else{
+                return 0;
             }
         };
-
-        // Update $scope.localStorageItemCount in order for the badge to update accordingly
     });
