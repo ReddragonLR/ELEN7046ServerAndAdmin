@@ -5,7 +5,7 @@
     <accordion close-others="oneAtATime">
         <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys" style="cursor: pointer;">
             <form novalidate class="css-form">
-                <input type="button" ng-click="addQuestion(survey)" value="Add Question"/>
+                <input type="button" ng-click="addQuestion(survey)" value="Add Question" />
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <div>
                         <p>Question Text:</p>
@@ -20,22 +20,22 @@
                         </span>
                         <div class="btn-group">
                             <div ng-show="question.AnswerType == 'YesNo'">
-                                <input type="button" ng-click="addAnswerOption(question)" value="add answer option"/>
+                                <input type="button" ng-click="addAnswerOption(question)" value="add answer option" />
                                 <div ng-repeat="answerOption in question.AnswerOptions track by $index">
-                                    <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
-                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove"/>
+                                    <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption" />
+                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove" />
                                 </div>
                             </div>
                             <div ng-show="question.AnswerType == 'Dropdown'">
-                                <input type="button" ng-click="addAnswerOption(question)" value="add answer option"/>
+                                <input type="button" ng-click="addAnswerOption(question)" value="add answer option" />
                                 <div ng-repeat="answerOption in question.AnswerOptions  track by $index">
-                                    <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
-                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove"/>
+                                    <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption" />
+                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove" />
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <input type="button" ng-click="removeQuestion()" value="remove question"/>
                 </div>
                 <input type="submit" ng-click="updateSurveyQuestions(survey)" value="Submit" />
             </form>

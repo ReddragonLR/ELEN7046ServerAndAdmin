@@ -54,29 +54,32 @@ angular.module('elen7046ServerAndAdminApp')
                 }
             }
         };
-    
-        $scope.addAnswerOption = function(question){
-            var updatedAllSurveys = $scope.allSurveys;
-            for (var i = 0; i < updatedAllSurveys.length; i++) {
-                for (var j = 0; j < updatedAllSurveys[i].QuestionAnswers.length; j++) {
-                    if (updatedAllSurveys[i].QuestionAnswers[j].Question == question.Question) {
+
+        $scope.addAnswerOption = function (question) {
+            for (var i = 0; i < $scope.allSurveys.length; i++) {
+                for (var j = 0; j < $scope.allSurveys[i].QuestionAnswers.length; j++) {
+                    if ($scope.allSurveys[i].QuestionAnswers[j].Question == question.Question) {
                         var lastIndex = $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.length - 1;
                         $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(lastIndex, 0, "");
                     }
                 }
             }
         }
-        
-        $scope.addQuestion = function(survey){
+
+        $scope.addQuestion = function (survey) {
             var newSurveyQuestion = new Object();
             newSurveyQuestion.Question = "Set New Question";
             newSurveyQuestion.AnswerType = "Text";
             newSurveyQuestion.AnswerOptions = [];
-            
-            for (var i = 0; i < $scope.allSurveys.length; i++){
-                if ($scope.allSurveys[i].Name == survey.Name){
+
+            for (var i = 0; i < $scope.allSurveys.length; i++) {
+                if ($scope.allSurveys[i].Name == survey.Name) {
                     $scope.allSurveys[i].QuestionAnswers.splice(0, 0, newSurveyQuestion);
                 }
             }
+        };
+
+        $scope.removeQuestion = function (survey, questionIndex) {
+            alert("asdasd");
         };
     });
