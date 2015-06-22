@@ -39,6 +39,7 @@ angular.module('elen7046ServerAndAdminApp')
                     sessionStorage.setItem("completedsurveys", JSON.stringify(failedCompletedSurveysToUpload));
                     $scope.locallyStoredCompletedSurveys = _getLocallyStoredCompletedSurveyCount();
                 }
+                window.location.reload();
             }
 
         };
