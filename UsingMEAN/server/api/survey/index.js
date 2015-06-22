@@ -11,6 +11,6 @@ router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 //router.get('/:option', controller.getSurveyIds);
-//router.delete('/:id', controller.destroy);
+router.delete('/:id', controller.destroy);
 
 module.exports = router;

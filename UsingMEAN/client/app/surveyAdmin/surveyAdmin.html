@@ -13,26 +13,24 @@
                     <div class="btn-group">
                         <p>Choose Response Type:</p>
                         <span>
-                            <input type="radio" name="radioAnswerGroup" value="YesNo"/>Radio<br/>
-                            <input type="radio" name="radioAnswerGroup" value="Text"/>Text<br/>
-                            <input type="radio" name="radioAnswerGroup" value="Dropdown"/>Dropdown<br/>
+                            <input type="radio" value="YesNo" ng-model="question.AnswerType"/>YesNo<br/>
+                            <input type="radio" value="Text" ng-model="question.AnswerType"/>Text<br/>
+                            <input type="radio" value="Dropdown" ng-model="question.AnswerType"/>Dropdown<br/>
                         </span>
+                        <div class="btn-group">
+                            <div ng-show="question.AnswerType == 'YesNo'">
+                                <div ng-repeat="answerOption in question.AnswerOptions">
+                                    <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
+                                </div>
+                            </div>
+                            <div ng-show="question.AnswerType == 'Dropdown'">
+                                <div ng-repeat="answerOption in question.AnswerOptions">
+                                    <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!--<p>{{question.Question}}</p>
-                    <span ng-if="question.AnswerType[0] == 'Text'">
-                    <input type="Text" ng-model="question.Answer"/>
-                </span>-->
-                    <!--<div ng-if="question.AnswerType[0] == 'Radio'" class="btn-group">
-                        <span ng-repeat="answerOption in question.AnswerOptions">
-                            <input type="radio" name="radioAnswerGroup" ng-model="question.Answer" value="{{answerOption}}">{{answerOption}}<br/>
-                        </span>
-                    </div>-->
-                    <!-- Multi select needs work -->
-                    <!--<span ng-if="question.AnswerType[0] == 'Multi'">
-                    <span ng-repeat="answerOption in question.AnswerOptions">
-                        <input type="checkbox" name="checkboxAnswerList" ng-model="question.Answer" value="answerOption">{{answerOption}}</label>
-                    </span>
-                </span>-->
+
                 </div>
                 <input type="submit" ng-click="updateSurveyQuestions(survey)" value="Submit" />
             </form>

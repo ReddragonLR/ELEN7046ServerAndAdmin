@@ -37,10 +37,11 @@ angular.module('elen7046ServerAndAdminApp')
 
         // Update the questions in the survey
         $scope.updateSurveyQuestions = function (survey) {
-            $http.put('/api/surveys/' + survey._id, {
-                Question: 'This is an updated question',
-                AnswerType: ['Radio'],
-                AnswerOptions: ['Yes', 'No', 'Not Sure']
+            console.log(survey);
+            $http.delete('/api/surveys/' + survey._id).success(function () {
+                $http.post('/api/surveys/', survey).error(function (err) {
+                    console.log(err);
+                });
             });
             console.log('Survey questions updated');
         }

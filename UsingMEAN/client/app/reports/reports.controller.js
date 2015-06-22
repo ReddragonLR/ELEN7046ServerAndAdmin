@@ -443,7 +443,7 @@ angular.module('elen7046ServerAndAdminApp')
                     data: [0, 0, 0, 1, 1, 0, 0, 0]
                     }, {
                     name: 'How satisfied are you with the skill and competency of the staff?',
-                    data: [0, 0, 0, 0, 0, 1, 1, 0]
+                    data: [0, 0, 0, 0, 0, 0, 2, 1]
                     }, {
                     name: 'Overall cleanliness of the hospital?',
                     data: [0, 0, 0, 0, 0, 0, 1, 0]
