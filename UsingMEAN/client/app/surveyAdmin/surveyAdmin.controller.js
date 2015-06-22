@@ -47,7 +47,7 @@ angular.module('elen7046ServerAndAdminApp')
         $scope.deleteAnswerOption = function (answerOptionIndex, question) {
             for (var i = 0; i < $scope.allSurveys.length; i++) {
                 for (var j = 0; j < $scope.allSurveys[i].QuestionAnswers.length; j++) {
-                    if ($scope.allSurveys[i].QuestionAnswers[j].Question == question.Question) {
+                    if ($scope.allSurveys[i].QuestionAnswers[j]._id == question._id) {
                         $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(answerOptionIndex, 1);
                     }
                 }
@@ -57,8 +57,8 @@ angular.module('elen7046ServerAndAdminApp')
         $scope.addAnswerOption = function (question) {
             for (var i = 0; i < $scope.allSurveys.length; i++) {
                 for (var j = 0; j < $scope.allSurveys[i].QuestionAnswers.length; j++) {
-                    if ($scope.allSurveys[i].QuestionAnswers[j].Question == question.Question) {
-                        var lastIndex = $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.length - 1;
+                    if ($scope.allSurveys[i].QuestionAnswers[j]._id == question._id) {
+                        var lastIndex = $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.length;
                         $scope.allSurveys[i].QuestionAnswers[j].AnswerOptions.splice(lastIndex, 0, "");
                     }
                 }
@@ -72,15 +72,15 @@ angular.module('elen7046ServerAndAdminApp')
             newSurveyQuestion.AnswerOptions = [];
 
             for (var i = 0; i < $scope.allSurveys.length; i++) {
-                if ($scope.allSurveys[i].Name == survey.Name) {
+                if ($scope.allSurveys[i]._id == survey._id) {
                     $scope.allSurveys[i].QuestionAnswers.splice(0, 0, newSurveyQuestion);
                 }
             }
         };
 
         $scope.removeQuestion = function (survey, questionIndex) {
-            for (var i = 0; i < $scope.allSurveys.length; i++){
-                if ($scope.allSurveys[i].Name == survey.Name){
+            for (var i = 0; i < $scope.allSurveys.length; i++) {
+                if ($scope.allSurveys[i]._id == survey._id) {
                     $scope.allSurveys[i].QuestionAnswers.splice(questionIndex, 1);
                 }
             }
