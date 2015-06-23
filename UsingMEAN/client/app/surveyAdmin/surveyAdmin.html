@@ -9,6 +9,10 @@
             <form novalidate class="css-form">
                 <button class="btn btn-danger btn-sm" ng-click="removeSurvey(survey)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Survey</button>
                 <button class="btn btn-success btn-sm" ng-click="addQuestion(survey)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Question</button>
+                <div class="well">
+                        <p>Survey Name:</p>
+                        <input type="text" ng-model="survey.Name"/>
+                    </div>
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <div>
                         <button class="btn btn-danger btn-sm" ng-click="removeQuestion(survey, $index)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Question</button>
