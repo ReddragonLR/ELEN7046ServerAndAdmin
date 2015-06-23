@@ -16,20 +16,19 @@ angular.module('elen7046ServerAndAdminApp')
 
         $scope.submitAllCompletedSurveys = function () {
             if (sessionStorage.getItem("completedsurveys")) {
-                console.log('Hit submit all');
                 var completedSurveys = JSON.parse(sessionStorage.getItem("completedsurveys"));
                 sessionStorage.removeItem("completedsurveys");
-
                 // temp storage for items failed to submit
                 var failedCompletedSurveysToUpload = [];
 
                 while (completedSurveys.length > 0) {
                     var completedSurveyData = completedSurveys.pop();
+                    console.log(completedSurveyData);
                     $http.post('/api/completedSurveys', {
-                        CompletedQuestionAnswers: completedSurveyData,
-                        DateCompleted: Date.UTC(),
-                        SurveyTaker: 'Some Random Guy',
-                        SurveySupervisor: 'Some Random Supervisor',
+                        CompletedQuestionAnswers: completedSurveyData.completedQuestionAnswers,
+                        DateCompleted: completedSurveyData.DateCompleted,
+                        SurveyTaker: completedSurveyData.SurveyTaker,
+                        SurveySupervisor: completedSurveyData.SurveySupervisor,
                         SurveyName: completedSurveyData.SurveyName
                     }).error(function () {
                         failedCompletedSurveysToUpload.push(completedSurveys[i])

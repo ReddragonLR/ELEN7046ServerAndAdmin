@@ -15,7 +15,6 @@ angular.module('elen7046ServerAndAdminApp')
 
         // Function to submit the survey
         $scope.submitSurvey = function (survey) {
-            console.log(survey);
             if (sessionStorage.getItem("completedsurveys"))
             {
                 completedSurveys = JSON.parse(sessionStorage.getItem("completedsurveys"));
@@ -42,14 +41,19 @@ angular.module('elen7046ServerAndAdminApp')
         };
 
         function _mapCapturedQuestionAnswers(survey) {
-            var completedQuestionAnswers = [];
+            var completedSurveyObj = new Object();
+            completedSurveyObj.DateCompleted = Date.now();
+            completedSurveyObj.SurveyTaker = 'Some Random Guy';
+            completedSurveyObj.SurveySupervisor = 'Some Random Supervisor';
+            completedSurveyObj.SurveyName = survey.Name;
+            completedSurveyObj.completedQuestionAnswers = [];
             for (var i = 0; i < survey.QuestionAnswers.length; i++) {
                 var completedQuestionAnswerObj = new Object();
                 completedQuestionAnswerObj.Question = survey.QuestionAnswers[i].Question;
                 completedQuestionAnswerObj.Answer = survey.QuestionAnswers[i].Answer;
                 completedQuestionAnswerObj.AnswerType = survey.QuestionAnswers[i].AnswerType;
-                completedQuestionAnswers.push(completedQuestionAnswerObj);
+                completedSurveyObj.completedQuestionAnswers.push(completedQuestionAnswerObj);
             };
-            return completedQuestionAnswers;
+            return completedSurveyObj;
         };
     });
