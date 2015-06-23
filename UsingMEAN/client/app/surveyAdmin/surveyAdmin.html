@@ -3,15 +3,15 @@
 <div class="container">
     Choose a survey from the list below:
     <br/>
-    <input type="button" ng-click="addSurvey()" value="add survey"/>
+    <button class="btn btn-success" ng-click="addSurvey()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Survey</button>
     <accordion close-others="oneAtATime">
         <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys" style="cursor: pointer;">
             <form novalidate class="css-form">
-                <input type="button" ng-click="removeSurvey(survey)" value="remove survey"/>
-                <input type="button" ng-click="addQuestion(survey)" value="Add Question" />
+                <button class="btn btn-danger" ng-click="removeSurvey(survey)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Survey</button>
+                <button class="btn btn-success" ng-click="addQuestion(survey)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Question</button>
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <div>
-                        <input type="button" ng-click="removeQuestion(survey, $index)" value="remove question" />
+                        <button class="btn btn-danger" ng-click="removeQuestion(survey, $index)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Question</button>
                     </div>
                     <div>
                         <p>Question Text:</p>
