@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Sir Vey</h1>
         <p class="lead">Capture surveys with Sir Vey</p>
-        <img src="assets/images/Knight-icon.png" alt="I'm Yeoman">
+        <img src="assets/images/Knight-icon.png" alt="Sir Vey">
     </div>
 </header>
 
@@ -29,11 +29,6 @@
   </form>
 </div>-->
 
-<div class="container">
-    <p ng-if="localStorageSupported == true">
-        This browser supports local storage
-    </p>
-</div>
 
 <footer class="footer">
     <div class="container">
@@ -41,10 +36,12 @@
             <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
             <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a>
         </p>
-        <p>Team |
-            Team Twitter Accounts |
+        <p>Team | Team Twitter Accounts |
             <a href="https://twitter.com/RedDragonLR">@reddragonlr</a>
-            <a href="https://github.com/ReddragonLR/ELEN7046ServerAndAdmin">Team GitHub Repo</a></p>
+            <a href="https://github.com/ReddragonLR/ELEN7046ServerAndAdmin">Team GitHub Repo</a>
         </p>
+        <span ng-if="localStorageSupported == true" class="glyphicon glyphicon-exclamation-sign" style="color:red" aria-hidden="true"> 
+                This browser supports local storage
+        </span>
     </div>
 </footer>

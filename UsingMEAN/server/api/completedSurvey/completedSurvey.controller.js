@@ -50,6 +50,7 @@ exports.create = function (req, res) {
         console.log(req.body);
         var completedSurveyCollection = req.body;
         for (var i = 0; i < completedSurveyCollection.length; i++) {
+            completedSurveyCollection[i].DateCompleted = Date.UTC();
             CompletedSurvey.create(completedSurveyCollection[i], function (err, completedSurvey) {
                 if (err) {
                     return handleError(res, err);
