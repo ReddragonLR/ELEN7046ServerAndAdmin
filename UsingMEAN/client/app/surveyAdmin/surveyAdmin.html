@@ -3,15 +3,15 @@
 <div class="container">
     Choose a survey from the list below:
     <br/>
-    <button class="btn btn-success" ng-click="addSurvey()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Survey</button>
+    <button class="btn btn-success btn-sm" ng-click="addSurvey()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Survey</button>
     <accordion close-others="oneAtATime">
         <accordion-group heading={{survey.Name}} ng-repeat="survey in allSurveys" style="cursor: pointer;">
             <form novalidate class="css-form">
-                <button class="btn btn-danger" ng-click="removeSurvey(survey)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Survey</button>
-                <button class="btn btn-success" ng-click="addQuestion(survey)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Question</button>
+                <button class="btn btn-danger btn-sm" ng-click="removeSurvey(survey)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Survey</button>
+                <button class="btn btn-success btn-sm" ng-click="addQuestion(survey)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Question</button>
                 <div class="well" ng-repeat="question in survey.QuestionAnswers">
                     <div>
-                        <button class="btn btn-danger" ng-click="removeQuestion(survey, $index)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Question</button>
+                        <button class="btn btn-danger btn-sm" ng-click="removeQuestion(survey, $index)"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Question</button>
                     </div>
                     <div>
                         <p>Question Text:</p>
@@ -26,23 +26,24 @@
                         </span>
                         <div class="btn-group">
                             <div ng-show="question.AnswerType == 'YesNo'">
-                                <input type="button" ng-click="addAnswerOption(question)" value="add answer option" />
+                                <button class="btn btn-success btn-xs" ng-click="addAnswerOption(question)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Answer Option</button>
                                 <div ng-repeat="answerOption in question.AnswerOptions track by $index">
                                     <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption" />
-                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove" />
+                                    <button class="btn btn-danger btn-xs" ng-click="deleteAnswerOption($index, question)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                 </div>
                             </div>
                             <div ng-show="question.AnswerType == 'Dropdown'">
-                                <input type="button" ng-click="addAnswerOption(question)" value="add answer option" />
+                                <button class="btn btn-success btn-xs" ng-click="addAnswerOption(question)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Answer Option</button>
                                 <div ng-repeat="answerOption in question.AnswerOptions  track by $index">
                                     <input type="text" ng-model="question.AnswerOptions[$index]" value="answerOption" />
-                                    <input type="button" ng-click="deleteAnswerOption($index, question)" value="remove" />
+                                    <button class="btn btn-danger btn-xs" ng-click="deleteAnswerOption($index, question)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="submit" ng-click="updateSurveyQuestions(survey)" value="Submit" />
+                <button class="btn btn-primary" ng-click="updateSurveyQuestions(survey)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Submit</button>
+                <!--<input type="submit" ng-click="updateSurveyQuestions(survey)" value="Submit" />-->
             </form>
         </accordion-group>
     </accordion>
