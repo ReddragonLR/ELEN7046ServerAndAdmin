@@ -25,7 +25,10 @@
                     <a href="/reports"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Reports</a>
                 </li>
                 <li ng-show="isLoggedIn()" ng-class="{active: isActive('/localstorage')}">
-                    <a href="/localstorage">Local Storage <span class="badge">{{localStorageItemCount}}</span></a>
+                    <a href="/localstorage">Local Storage 
+                        <span ng-if="localStorageItemCount > 0" class="badge" style="background-color:red">{{localStorageItemCount}}</span>
+                        <span ng-if="localStorageItemCount == 0" class="badge">{{localStorageItemCount}}</span>
+                    </a>
                 </li>
             </ul>
 

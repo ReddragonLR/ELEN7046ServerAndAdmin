@@ -6,7 +6,7 @@
             There are currently {{locallyStoredCompletedSurveys}} locally stored surveys
         </p>
         <div ng-if="locallyStoredCompletedSurveys != 0">
-            <input type="submit" ng-click="submitAllCompletedSurveys()" value="Submit To Server" />
+            <button class="btn btn-primary" ng-click="submitAllCompletedSurveys()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Submit To Server</button>
         </div>
     </form>
 </div>
